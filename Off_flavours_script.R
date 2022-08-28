@@ -130,7 +130,7 @@ ggplot(Correlation_Palm, aes(fill=Fermentation, y=Quantity_mean, x=Enzyme))+
 
 ######ANOVA & T.test b/w Rounds of Panelists############
 
-Off_flavour_panel <- read_excel("Off_flavour_Data.xlsx", sheet = "Sheet1")
+Off_flavour_panel <- read_excel("Off_flavour_Data.xlsx", sheet = "Off_Intensity_panel")
 Off_flavour_panel$Enzyme.2 <- as.factor(Off_flavour_panel$Enzyme.2)
 Off_flavour_panel$Round <- as.factor(Off_flavour_panel$Round)
 
