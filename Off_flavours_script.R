@@ -21,7 +21,6 @@ Off_flavour_Data$Intensity_mean <- as.numeric(Off_flavour_Data$Intensity_mean)
 Off_flavour_Data$Dosage <- as.factor(Off_flavour_Data$Dosage)
 
 
-
 ######Data Visualization (1)#######
 
 ###660
@@ -111,7 +110,6 @@ ggplot(Correlation_Butter, aes(fill=Fermentation, y=Quantity_mean, x=Enzyme))+
   geom_text(aes(label=Quantity_mean),
             position = position_dodge(0.9),
             vjust = -0.2)
-
 
 ###Palm
 Correlation_Palm <- Off_flavour_Palm %>% na.omit()
