@@ -76,7 +76,7 @@ Off_flavour_Sunflower <- Off_flavour_Data %>% filter(Fat == "Sunflower")
 ggplot(Off_flavour_Sunflower, aes(x=Enzyme, y=Intensity_mean, colour=Dosage))+
   geom_point(position=position_jitter(h=0.01, w=0.1), size = 4)+
   facet_grid(cols = vars(Fermentation))+
-  scale_colour_manual(values=c("#976AB9","#481173"))+
+  scale_colour_manual(values=c("#E190E4","#AE18B3"))+
   ylab("Off-flavour Intensity")+
   ggtitle("Off flavour Intensity of different Enzyme in Sunflower")+
   theme(plot.title = element_text(hjust = 0.5))+
@@ -128,7 +128,7 @@ ggplot(Correlation_Palm, aes(fill=Fermentation, y=Quantity_mean, x=Enzyme))+
 
 ######ANOVA & T.test b/w Rounds of Panelists############
 
-Off_flavour_panel <- read_excel("Off_flavour_Data.xlsx", sheet = "Off_Intensity_panel")
+Off_flavour_panel <- read_excel("Off_flavour_Data.xlsx", sheet = "Butter_Off_Intensity_panel")
 Off_flavour_panel$Enzyme.2 <- as.factor(Off_flavour_panel$Enzyme.2)
 Off_flavour_panel$Round <- as.factor(Off_flavour_panel$Round)
 
@@ -140,5 +140,5 @@ compare_means(Intensity.avg~Round,
               data=Off_flavour_panel,
               method = "t.test")
 
-#Interpretation: There was no significant difference between average results of the panelists in different rounds (p=0.52, ANOVA).
+#Interpretation: There was no significant difference between average observations of the panelists in different rounds (p=0.52, ANOVA).
 #Interpretation: The average observations of panelists showed no significant difference between round1 and round2 (p= 0.33), round1 and round3 (p= 0.82), and round2 and round3 (p= 0.43).
