@@ -96,39 +96,9 @@ ggplot(Off_flavour_Coconut, aes(x=Enzyme, y=Intensity_mean, colour=Dosage))+
 
 
 
-######Data Visualization (3)#######
-
-####Butter
-Correlation_Butter <- Off_flavour_Butter %>% na.omit()
-ggplot(Correlation_Butter, aes(fill=Fermentation, y=Quantity_mean, x=Enzyme))+
-  geom_bar(position='dodge', stat='identity')+
-  scale_x_discrete(limits=c("Ref","A","B"))+
-  scale_fill_manual(values=c("#F5AAB0","#D36069"))+
-  ylab("FFA Quantity (g/100g)")+
-  ggtitle("Butter 220ALU/kg")+
-  theme(plot.title = element_text(hjust = 0.5))+
-  geom_text(aes(label=Quantity_mean),
-            position = position_dodge(0.9),
-            vjust = -0.2)
-
-###Palm
-Correlation_Palm <- Off_flavour_Palm %>% na.omit()
-ggplot(Correlation_Palm, aes(fill=Fermentation, y=Quantity_mean, x=Enzyme))+
-  geom_bar(position='dodge', stat='identity')+
-  scale_x_discrete(limits=c("Ref","A","B"))+
-  scale_fill_manual(values=c("#976AB9","#481173"))+
-  ylab("FFA Quantity (g/100g)")+
-  ggtitle("Palm 220ALU/kg")+
-  theme(plot.title = element_text(hjust = 0.5))+
-  geom_text(aes(label=Quantity_mean),
-            position = position_dodge(0.9),
-            vjust = -0.2)
-
-
-
 ######ANOVA & T.test b/w Rounds of Panelists############
 
-Off_flavour_panel <- read_excel("Off_flavour_Data.xlsx", sheet = "Butter_Off_Intensity_panel")
+Off_flavour_panel <- read_excel("Off_flavour_Data.xlsx", sheet = "Butter_panel_of")
 Off_flavour_panel$Enzyme.2 <- as.factor(Off_flavour_panel$Enzyme.2)
 Off_flavour_panel$Round <- as.factor(Off_flavour_panel$Round)
 
@@ -142,3 +112,49 @@ compare_means(Intensity.avg~Round,
 
 #Interpretation: There was no significant difference between average observations of the panelists in different rounds (p=0.52, ANOVA).
 #Interpretation: The average observations of panelists showed no significant difference between round1 and round2 (p= 0.33), round1 and round3 (p= 0.82), and round2 and round3 (p= 0.43).
+
+
+######Data Visualization (3)#######
+
+#Butter_panel
+butter_panel <- read_excel("Off_flavour_Data.xlsx", sheet = "Off_Intensity_panel")
+butter_panel <- butter_panel %>% filter(Fat == "Butter")
+
+
+#strings
+butter_panel$Enzyme <- as.factor(butter_panel$Enzyme)
+butter_panel$Fat <- as.factor(butter_panel$Fat)
+butter_panel$Fermentation <- as.factor(butter_panel$Fermentation)
+butter_panel$Intensity_mean <- as.numeric(butter_panel$Intensity_mean)
+butter_panel$Dosage <- as.numeric(butter_panel$Dosage)
+
+
+ggplot(butter_panel, aes(x=Enzyme, y=Intensity_mean, colour=Fermentation))+
+  geom_point(position=position_jitter(h=0.01, w=0.1), size = 4)+
+  scale_colour_manual(values=c("#F5AAB0","#D36069"))+ 
+  ylab("Off-flavour Intensity")+
+  ggtitle("Off flavour Intensity of Butter by Trained Panelist (220ALU/kg)")+
+  theme(plot.title = element_text(hjust = 0.5))+
+  scale_x_discrete(limits=c("Ref","A","B","C","D","E","Ref-Ref"))
+
+
+#Palm_panel
+palm_panel <- read_excel("Off_flavour_Data.xlsx", sheet = "Off_Intensity_panel")
+palm_panel <- palm_panel %>% filter(Fat == "Palm")
+
+
+#strings
+palm_panel$Enzyme <- as.factor(palm_panel$Enzyme)
+palm_panel$Fat <- as.factor(palm_panel$Fat)
+palm_panel$Fermentation <- as.factor(palm_panel$Fermentation)
+palm_panel$Intensity_mean <- as.numeric(palm_panel$Intensity_mean)
+palm_panel$Dosage <- as.numeric(palm_panel$Dosage)
+
+
+ggplot(palm_panel, aes(x=Enzyme, y=Intensity_mean, colour=Fermentation))+
+  geom_point(position=position_jitter(h=0.01, w=0.1), size = 4)+
+  scale_colour_manual(values=c("#7BB2C4","#13586F"))+ 
+  ylab("Off-flavour Intensity")+
+  ggtitle("Off flavour Intensity of Palm by Trained Panelist (220ALU/kg)")+
+  theme(plot.title = element_text(hjust = 0.5))+
+  scale_x_discrete(limits=c("Ref","A","B","C","D","E","Ref-Ref"))
