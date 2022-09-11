@@ -10,8 +10,7 @@ library(purrr)
 
 ######Import Data frame (Excel)#######
 Off_flavour_Data <- read_excel("Off_flavour_Data.xlsx")
-Off_flavour_Data <- select(Off_flavour_Data,-Intensity_P1,-Intensity_P2,-Intensity_P3,
-                           -Quantity_1,-Quantity_2)
+Off_flavour_Data <- select(Off_flavour_Data, Enzyme, Fat, Dosage, Fermentation, Intensity_mean)
 
 #strings
 Off_flavour_Data$Enzyme <- as.factor(Off_flavour_Data$Enzyme)
@@ -28,10 +27,10 @@ Off_flavour_660 <- Off_flavour_Data %>% filter(Dosage == 660)
 ggplot(Off_flavour_660, aes(x=Enzyme, y=Intensity_mean, colour=Fat))+        
   geom_point(position=position_jitter(h=0.01, w=0.1), size = 4)+
   ylab("Off-flavour Intensity")+
-  facet_grid(cols = vars(Fermentation))+ 
-  ggtitle("Off flavour Intensity of different Enzyme at dosage of 660 ALU/kg")+
+  facet_grid(cols = vars(Fermentation))+
   theme(plot.title = element_text(hjust = 0.5))+
-  scale_x_discrete(limits=c("Ref","A","B","C","D","E"))
+  scale_x_discrete(limits=c("Ref","A","B","C","D","E"))+
+  ylim(0,4)
 
 
 ###220
@@ -40,9 +39,9 @@ ggplot(Off_flavour_220, aes(x=Enzyme, y=Intensity_mean, colour=Fat))+
   geom_point(position=position_jitter(h=0.01, w=0.1), size = 4)+
   ylab("Off-flavour Intensity")+
   facet_grid(cols = vars(Fermentation))+
-  ggtitle("Off flavour Intensity of different Enzyme at dosage of 220 ALU/kg")+
   theme(plot.title = element_text(hjust = 0.5))+
-  scale_x_discrete(limits=c("Ref","A","B","C","D","E"))
+  scale_x_discrete(limits=c("Ref","A","B","C","D","E"))+
+  ylim(0,4)
 
 
 
@@ -55,9 +54,10 @@ ggplot(Off_flavour_Butter, aes(x=Enzyme, y=Intensity_mean, colour=Dosage))+
   facet_grid(cols = vars(Fermentation))+
   scale_colour_manual(values=c("#F5AAB0","#D36069"))+ 
   ylab("Off-flavour Intensity")+
-  ggtitle("Off flavour Intensity of different Enzyme in Butter")+
+  labs(colour = "Dosage (220 ALU/kg)")+
   theme(plot.title = element_text(hjust = 0.5))+
-  scale_x_discrete(limits=c("Ref","A","B","C","D","E"))
+  scale_x_discrete(limits=c("Ref","A","B","C","D","E"))+
+  ylim(0,4)
 
 ###Palm
 Off_flavour_Palm <- Off_flavour_Data %>% filter(Fat == "Palm")
@@ -66,10 +66,10 @@ ggplot(Off_flavour_Palm, aes(x=Enzyme, y=Intensity_mean, colour=Dosage))+
   facet_grid(cols = vars(Fermentation))+
   scale_colour_manual(values=c("#7BB2C4","#13586F"))+ 
   ylab("Off-flavour Intensity")+
-  ggtitle("Off flavour Intensity of different Enzyme in Palm")+
+  labs(colour = "Dosage (220 ALU/kg)")+
   theme(plot.title = element_text(hjust = 0.5))+
-  scale_x_discrete(limits=c("Ref","A","B","C","D","E"))
-
+  scale_x_discrete(limits=c("Ref","A","B","C","D","E"))+
+  ylim(0,4)
 
 ###Sunflower
 Off_flavour_Sunflower <- Off_flavour_Data %>% filter(Fat == "Sunflower")
@@ -78,9 +78,11 @@ ggplot(Off_flavour_Sunflower, aes(x=Enzyme, y=Intensity_mean, colour=Dosage))+
   facet_grid(cols = vars(Fermentation))+
   scale_colour_manual(values=c("#E190E4","#AE18B3"))+
   ylab("Off-flavour Intensity")+
-  ggtitle("Off flavour Intensity of different Enzyme in Sunflower")+
+  labs(colour = "Dosage (220 ALU/kg)")+
+  labs(colour = "Dosage (220 ALU/kg)")+
   theme(plot.title = element_text(hjust = 0.5))+
-  scale_x_discrete(limits=c("Ref","A","B","C","D","E"))
+  scale_x_discrete(limits=c("Ref","A","B","C","D","E"))+
+  ylim(0,4)
 
 
 ###Coconut
@@ -90,9 +92,10 @@ ggplot(Off_flavour_Coconut, aes(x=Enzyme, y=Intensity_mean, colour=Dosage))+
   facet_grid(cols = vars(Fermentation))+
   scale_colour_manual(values=c("#A6D26D","#45710D"))+ 
   ylab("Off-flavour Intensity")+
-  ggtitle("Off flavour Intensity of different Enzyme in Coconut")+
+  labs(colour = "Dosage (220 ALU/kg)")+
   theme(plot.title = element_text(hjust = 0.5))+
-  scale_x_discrete(limits=c("Ref","A","B","C","D","E"))
+  scale_x_discrete(limits=c("Ref","A","B","C","D","E"))+
+  ylim(0,4)
 
 
 
@@ -133,9 +136,10 @@ ggplot(butter_panel, aes(x=Enzyme, y=Intensity_mean, colour=Fermentation))+
   geom_point(position=position_jitter(h=0.01, w=0.1), size = 4)+
   scale_colour_manual(values=c("#F5AAB0","#D36069"))+ 
   ylab("Off-flavour Intensity")+
-  ggtitle("Off flavour Intensity of Butter by Trained Panelist (220ALU/kg)")+
+  labs(colour = "Dosage (220 ALU/kg)")+
   theme(plot.title = element_text(hjust = 0.5))+
-  scale_x_discrete(limits=c("Ref","A","B","C","D","E","Ref-Ref"))
+  scale_x_discrete(limits=c("Ref","A","B","C","D","E","Ref-Ref"))+
+  ylim(0,4)
 
 
 #Palm_panel
@@ -155,6 +159,7 @@ ggplot(palm_panel, aes(x=Enzyme, y=Intensity_mean, colour=Fermentation))+
   geom_point(position=position_jitter(h=0.01, w=0.1), size = 4)+
   scale_colour_manual(values=c("#7BB2C4","#13586F"))+ 
   ylab("Off-flavour Intensity")+
-  ggtitle("Off flavour Intensity of Palm by Trained Panelist (220ALU/kg)")+
+  labs(colour = "Dosage (220 ALU/kg)")+
   theme(plot.title = element_text(hjust = 0.5))+
-  scale_x_discrete(limits=c("Ref","A","B","C","D","E","Ref-Ref"))
+  scale_x_discrete(limits=c("Ref","A","B","C","D","E","Ref-Ref"))+
+  ylim(0,4)
