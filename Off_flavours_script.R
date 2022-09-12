@@ -25,23 +25,23 @@ Off_flavour_Data$Dosage <- as.factor(Off_flavour_Data$Dosage)
 ###660
 Off_flavour_660 <- Off_flavour_Data %>% filter(Dosage == 660) 
 ggplot(Off_flavour_660, aes(x=Enzyme, y=Intensity_mean, colour=Fat))+        
-  geom_point(position=position_jitter(h=0.01, w=0.1), size = 4)+
+  geom_point(position=position_dodge(w=0.2), size = 4)+
   ylab("Off-flavour Intensity")+
   facet_grid(cols = vars(Fermentation))+
   theme(plot.title = element_text(hjust = 0.5))+
   scale_x_discrete(limits=c("Ref","A","B","C","D","E"))+
-  ylim(0,4)
+  ylim(-0.1,4.01)
 
 
 ###220
 Off_flavour_220 <- Off_flavour_Data %>% filter(Dosage == 220)
 ggplot(Off_flavour_220, aes(x=Enzyme, y=Intensity_mean, colour=Fat))+
-  geom_point(position=position_jitter(h=0.01, w=0.1), size = 4)+
+  geom_point(position=position_dodge(w=0.2), size = 4)+
   ylab("Off-flavour Intensity")+
   facet_grid(cols = vars(Fermentation))+
   theme(plot.title = element_text(hjust = 0.5))+
   scale_x_discrete(limits=c("Ref","A","B","C","D","E"))+
-  ylim(0,4)
+  ylim(-0.1,4.01)
 
 
 
@@ -50,31 +50,31 @@ ggplot(Off_flavour_220, aes(x=Enzyme, y=Intensity_mean, colour=Fat))+
 ###BUTTER
 Off_flavour_Butter <- Off_flavour_Data %>% filter(Fat == "Butter")
 ggplot(Off_flavour_Butter, aes(x=Enzyme, y=Intensity_mean, colour=Dosage))+
-  geom_point(position=position_jitter(h=0.01, w=0.1), size = 4)+
+  geom_point(position=position_dodge(w=0.2), size = 4)+
   facet_grid(cols = vars(Fermentation))+
   scale_colour_manual(values=c("#F5AAB0","#D36069"))+ 
   ylab("Off-flavour Intensity")+
   labs(colour = "Dosage (220 ALU/kg)")+
   theme(plot.title = element_text(hjust = 0.5))+
   scale_x_discrete(limits=c("Ref","A","B","C","D","E"))+
-  ylim(0,4)
+  ylim(-0.1,4.01)
 
 ###Palm
 Off_flavour_Palm <- Off_flavour_Data %>% filter(Fat == "Palm")
 ggplot(Off_flavour_Palm, aes(x=Enzyme, y=Intensity_mean, colour=Dosage))+
-  geom_point(position=position_jitter(h=0.01, w=0.1), size = 4)+
+  geom_point(position=position_dodge(w=0.2), size = 4)+
   facet_grid(cols = vars(Fermentation))+
   scale_colour_manual(values=c("#7BB2C4","#13586F"))+ 
   ylab("Off-flavour Intensity")+
   labs(colour = "Dosage (220 ALU/kg)")+
   theme(plot.title = element_text(hjust = 0.5))+
   scale_x_discrete(limits=c("Ref","A","B","C","D","E"))+
-  ylim(0,4)
+  ylim(-0.1,4.01)
 
 ###Sunflower
 Off_flavour_Sunflower <- Off_flavour_Data %>% filter(Fat == "Sunflower")
 ggplot(Off_flavour_Sunflower, aes(x=Enzyme, y=Intensity_mean, colour=Dosage))+
-  geom_point(position=position_jitter(h=0.01, w=0.1), size = 4)+
+  geom_point(position=position_dodge(w=0.2), size = 4)+
   facet_grid(cols = vars(Fermentation))+
   scale_colour_manual(values=c("#E190E4","#AE18B3"))+
   ylab("Off-flavour Intensity")+
@@ -82,20 +82,20 @@ ggplot(Off_flavour_Sunflower, aes(x=Enzyme, y=Intensity_mean, colour=Dosage))+
   labs(colour = "Dosage (220 ALU/kg)")+
   theme(plot.title = element_text(hjust = 0.5))+
   scale_x_discrete(limits=c("Ref","A","B","C","D","E"))+
-  ylim(0,4)
+  ylim(-0.1,4.01)
 
 
 ###Coconut
 Off_flavour_Coconut <- Off_flavour_Data %>% filter(Fat == "Coconut")
 ggplot(Off_flavour_Coconut, aes(x=Enzyme, y=Intensity_mean, colour=Dosage))+
-  geom_point(position=position_jitter(h=0.01, w=0.1), size = 4)+
+  geom_point(position=position_dodge(w=0.2), size = 4)+
   facet_grid(cols = vars(Fermentation))+
   scale_colour_manual(values=c("#A6D26D","#45710D"))+ 
   ylab("Off-flavour Intensity")+
   labs(colour = "Dosage (220 ALU/kg)")+
   theme(plot.title = element_text(hjust = 0.5))+
   scale_x_discrete(limits=c("Ref","A","B","C","D","E"))+
-  ylim(0,4)
+  ylim(-0.1,4.01)
 
 
 
@@ -133,13 +133,13 @@ butter_panel$Dosage <- as.numeric(butter_panel$Dosage)
 
 
 ggplot(butter_panel, aes(x=Enzyme, y=Intensity_mean, colour=Fermentation))+
-  geom_point(position=position_jitter(h=0.01, w=0.1), size = 4)+
+  geom_point(position=position_dodge(w=0.2), size = 4)+
   scale_colour_manual(values=c("#F5AAB0","#D36069"))+ 
   ylab("Off-flavour Intensity")+
   labs(colour = "Dosage (220 ALU/kg)")+
   theme(plot.title = element_text(hjust = 0.5))+
   scale_x_discrete(limits=c("Ref","A","B","C","D","E","Ref-Ref"))+
-  ylim(0,4)
+  ylim(-0.1,4.01)
 
 
 #Palm_panel
@@ -156,10 +156,10 @@ palm_panel$Dosage <- as.numeric(palm_panel$Dosage)
 
 
 ggplot(palm_panel, aes(x=Enzyme, y=Intensity_mean, colour=Fermentation))+
-  geom_point(position=position_jitter(h=0.01, w=0.1), size = 4)+
+  geom_point(position=position_dodge(w=0.2), size = 4)+
   scale_colour_manual(values=c("#7BB2C4","#13586F"))+ 
   ylab("Off-flavour Intensity")+
   labs(colour = "Dosage (220 ALU/kg)")+
   theme(plot.title = element_text(hjust = 0.5))+
   scale_x_discrete(limits=c("Ref","A","B","C","D","E","Ref-Ref"))+
-  ylim(0,4)
+  ylim(-0.1,4.01)
