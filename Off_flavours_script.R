@@ -116,7 +116,46 @@ compare_means(Intensity.avg~Round,
 #Interpretation: There was no significant difference between average observations of the panelists in different rounds (p=0.52, ANOVA).
 #Interpretation: The average observations of panelists showed no significant difference between round1 and round2 (p= 0.33), round1 and round3 (p= 0.82), and round2 and round3 (p= 0.43).
 
+############Anova butter b/w rounds of panel df###################
 
+
+Off_flavour_panel <- read_excel("Off_flavour_Data.xlsx", sheet = "Butter_panel_df")
+Off_flavour_panel$Enzyme.2 <- as.factor(Off_flavour_panel$Enzyme.2)
+Off_flavour_panel$Round <- as.factor(Off_flavour_panel$Round)
+
+compare_means(Intensity.avg~Round,
+              data=Off_flavour_panel,
+              method = "anova")
+
+compare_means(Intensity.avg~Round,
+              data=Off_flavour_panel,
+              method = "t.test")
+
+##########3Anova palm b/w rounds of panel df##############
+Off_flavour_panel <- read_excel("Off_flavour_Data.xlsx", sheet = "Palm_panel_df")
+Off_flavour_panel$Enzyme.2 <- as.factor(Off_flavour_panel$Enzyme.2)
+Off_flavour_panel$Round <- as.factor(Off_flavour_panel$Round)
+
+compare_means(Intensity.avg~Round,
+              data=Off_flavour_panel,
+              method = "anova")
+
+compare_means(Intensity.avg~Round,
+              data=Off_flavour_panel,
+              method = "t.test")
+
+##########3Anova palm b/w rounds of panel df##############
+Off_flavour_panel <- read_excel("Off_flavour_Data.xlsx", sheet = "Palm_panel_of")
+Off_flavour_panel$Enzyme.2 <- as.factor(Off_flavour_panel$Enzyme.2)
+Off_flavour_panel$Round <- as.factor(Off_flavour_panel$Round)
+
+compare_means(Intensity.avg~Round,
+              data=Off_flavour_panel,
+              method = "anova")
+
+compare_means(Intensity.avg~Round,
+              data=Off_flavour_panel,
+              method = "t.test")
 ######Data Visualization (3)#######
 
 #Butter_panel
